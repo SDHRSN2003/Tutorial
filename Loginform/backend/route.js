@@ -3,6 +3,7 @@ import { Router } from "express";
 import bcrypt from "bcrypt";
 import { User } from "./Model/UserModel.js";
 import jwt from "jsonwebtoken";
+import authenticate from "./authenticate.js";
 
 const route = Router();
 
@@ -42,6 +43,10 @@ route.post('/login',async(request,response)=>{
         console.error(error);
         return response.status(500).json({error: "Internal server error"});
     }
+});
+
+route.get('/protected-route',authenticate,(request,response)=>{
+    response.json({message:"Access granted to user",user:request.user});
 });
 
 export default route;
