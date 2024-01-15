@@ -1,4 +1,4 @@
-const secretkey = 'sdhrsn2003';
+
 import jwt from "jsonwebtoken";
 
 const authenticate = (request,response,next)=>{
@@ -7,8 +7,9 @@ const authenticate = (request,response,next)=>{
         return response.status(401).json({error: "Unauthorized - No token"});
     }
     try{
-        const decoded = jwt.verify(token,secretkey);
-        request.user = decoded.user;
+        const decoded = jwt.verify(token,'your_secret_key');
+        request.username = decoded.username;
+        request.roles = decoded.roles;
         next();
     }catch(error){
         console.error(error);

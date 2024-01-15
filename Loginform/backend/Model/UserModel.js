@@ -9,11 +9,11 @@ const UserModel = mongoose.Schema({
     password:{
         type: String,
         required: true
+    },
+    roles:{
+        type: [String],
+        default:["user"]
     }
-    // roles:{
-    //     type: String,
-    //     default:"user"
-    // }
 });
 
 UserModel.pre('save',async function(next){
