@@ -5,8 +5,11 @@ import { User } from "./Model/UserModel.js";
 import jwt from "jsonwebtoken";
 import authenticate from "./authenticate.js";
 import checkRole from "./checkRole.js";
+import customError from "./customError.js";
+import express from "express";  
 
 const route = Router();
+const app = express();
 
 route.get('/',(request,response)=>{
     response.send("Hello world");
@@ -63,4 +66,15 @@ route.get('/another-protected-route',(request,response)=>{
     }
 });
 
+app.get('/example',(request,response,next) =>{
+    try{
+        const randomNumber = Math.random();
+        if(randomNumber < 0.5){
+            throw new customError("something went wrong !",400);
+        }
+        response.json({message:"success"});
+    }catch(error){
+        next(error);
+    }
+})
 export default route;
