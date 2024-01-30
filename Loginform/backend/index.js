@@ -14,17 +14,17 @@ app.use('/user',route);
 //     return response.status(200).send("Hello world");
 // })
 
-// app.get('/example',(request,response,next) =>{
-//     try{
-//         const randomNumber = Math.random();
-//         if(randomNumber < 0.5){
-//             throw new customError("something went wrong !",400);
-//         }
-//         response.json({message:"success"});
-//     }catch(error){
-//         next(error);
-//     }
-// });
+app.get('/example',(request,response,next) =>{
+    try{
+        const randomNumber = Math.random();
+        if(randomNumber < 0.5){
+            throw new customError("something went wrong !",400);
+        }
+        response.json({message:"success"});
+    }catch(error){
+        next(error);
+    }
+});
 
 app.listen(PORT, () =>{
     console.log(`Running in port ${PORT}`);

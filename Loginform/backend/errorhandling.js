@@ -1,4 +1,4 @@
-import customError from "./customError";
+import customError from "./customError.js";
 const errorhandling = (error, request, response, next) =>{
     console.error(error.stack);
 
