@@ -5,8 +5,10 @@ import { Router } from "express";
 import route from "./route.js"; 
 import errorhandling from "./errorhandling.js";
 import customError from "./customError.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use('/user',route);
 // app.get('/', (request,response) => {
